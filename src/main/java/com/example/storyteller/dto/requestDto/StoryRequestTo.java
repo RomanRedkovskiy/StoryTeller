@@ -14,7 +14,7 @@ public class StoryRequestTo {
 
     private String title;
 
-    private String context;
+    private String content;
 
     private String created;
 

@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class PostRequestTo {
 
-    private String context;
+    private String content;
 
     private Long storyId;
 }

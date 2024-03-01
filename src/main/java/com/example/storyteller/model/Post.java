@@ -13,7 +13,7 @@ public class Post {
     private Long id;
 
     @Column(length = 2048)
-    private String context;
+    private String content;
 
     @ManyToOne()
     @JoinColumn(name = "story_id", referencedColumnName = "id")

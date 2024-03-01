@@ -21,7 +21,7 @@ public class Story {
     private String title;
 
     @Column(length = 2048)
-    private String context;
+    private String content;
 
     private LocalDateTime created;
 

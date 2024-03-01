@@ -64,14 +64,14 @@ public class PostServiceImpl implements PostService{
     }
 
     void requestDtoToPost(Post post, PostRequestTo dto){
-        post.setContext(dto.getContext());
+        post.setContent(dto.getContent());
         post.setStory(storyService.findStoryById(dto.getStoryId()));
     }
 
     PostResponseTo postToResponseDto(Post post){
         PostResponseTo dto = new PostResponseTo();
         dto.setId(post.getId());
-        dto.setContext(post.getContext());
+        dto.setContext(post.getContent());
         dto.setStoryId(post.getStory().getId());
         return dto;
     }

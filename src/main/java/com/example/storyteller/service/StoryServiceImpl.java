@@ -67,7 +67,7 @@ public class StoryServiceImpl implements StoryService {
 
     void requestDtoToStory(Story story, StoryRequestTo dto) {
         story.setTitle(dto.getTitle());
-        story.setContext(dto.getContext());
+        story.setContent(dto.getContent());
         story.setCreated(LocalDateTime.parse(dto.getCreated()));
         story.setModified(LocalDateTime.parse(dto.getModified()));
         story.setCreator(creatorService.findCreatorById(dto.getCreatorId()));
@@ -77,7 +77,7 @@ public class StoryServiceImpl implements StoryService {
         StoryResponseTo dto = new StoryResponseTo();
         dto.setId(story.getId());
         dto.setTitle(story.getTitle());
-        dto.setContext(story.getContext());
+        dto.setContext(story.getContent());
         dto.setCreated(story.getCreated().toString());
         dto.setModified(story.getModified().toString());
         dto.setCreatorId(story.getCreator().getId());
