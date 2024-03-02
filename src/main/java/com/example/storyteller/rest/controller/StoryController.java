@@ -3,12 +3,13 @@ package com.example.storyteller.rest.controller;
 import com.example.storyteller.dto.requestDto.StoryRequestTo;
 import com.example.storyteller.dto.responseDto.StoryResponseTo;
 import com.example.storyteller.service.StoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1.0/story")
+@RequestMapping("/api/v1.0/storys")
 public class StoryController {
 
     private final StoryService storyService;
@@ -33,15 +34,15 @@ public class StoryController {
     //@PreAuthorize("@securityService.hasRole(#header)")
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public StoryResponseTo addTask(@RequestBody StoryRequestTo taskDto) {
+    public StoryResponseTo addTask(@Valid @RequestBody StoryRequestTo taskDto) {
         return storyService.create(taskDto);
     }
 
     //@PreAuthorize("@securityService.hasRole(#header)")
-    @PutMapping("/{id}")
+    @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public StoryResponseTo updateTask(@RequestBody final StoryRequestTo taskDto, @PathVariable final Long id) {
-        return storyService.update(taskDto, id);
+    public StoryResponseTo updateTask(@Valid @RequestBody final StoryRequestTo taskDto) {
+        return storyService.update(taskDto);
     }
 
     //@PreAuthorize("@securityService.hasRole(#header)")

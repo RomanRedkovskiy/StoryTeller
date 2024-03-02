@@ -45,8 +45,8 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public PostResponseTo update(PostRequestTo dto, Long id) {
-        Post post = findPostById(id);
+    public PostResponseTo update(PostRequestTo dto) {
+        Post post = findPostById(dto.getId());
         requestDtoToPost(post, dto);
         postRepository.save(post);
         return postToResponseDto(post);
@@ -71,7 +71,7 @@ public class PostServiceImpl implements PostService{
     PostResponseTo postToResponseDto(Post post){
         PostResponseTo dto = new PostResponseTo();
         dto.setId(post.getId());
-        dto.setContext(post.getContent());
+        dto.setContent(post.getContent());
         dto.setStoryId(post.getStory().getId());
         return dto;
     }

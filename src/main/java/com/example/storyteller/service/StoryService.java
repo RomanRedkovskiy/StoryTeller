@@ -14,7 +14,7 @@ public interface StoryService {
 
     Story findStoryById(Long id);
 
-    StoryResponseTo update(StoryRequestTo dto, Long id);
+    StoryResponseTo update(StoryRequestTo dto);
 
     void delete(Long id);
 }

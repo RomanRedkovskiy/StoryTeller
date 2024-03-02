@@ -9,7 +9,7 @@ public class StoryResponseTo {
 
     private String title;
 
-    private String context;
+    private String content;
 
     private String created;
 

@@ -1,16 +1,24 @@
 package com.example.storyteller.dto.requestDto;
 
+
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class CreatorRequestTo {
 
+    private Long id;
+
+    @Size(min = 2, max = 64)
     private String login;
 
+    @Size(min = 8, max = 128)
     private String password;
 
-    private String firstName;
+    @Size(min = 2, max = 64)
+    private String firstname;
 
-    private String lastName;
+    @Size(min = 2, max = 64)
+    private String lastname;
 
 }

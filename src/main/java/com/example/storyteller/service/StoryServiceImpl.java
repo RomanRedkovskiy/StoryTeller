@@ -4,6 +4,7 @@ import com.example.storyteller.dto.requestDto.StoryRequestTo;
 import com.example.storyteller.dto.responseDto.StoryResponseTo;
 import com.example.storyteller.model.Story;
 import com.example.storyteller.repository.StoryRepository;
+import com.example.storyteller.util.DataDuplicationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,12 @@ public class StoryServiceImpl implements StoryService {
 
     @Override
     public StoryResponseTo create(StoryRequestTo dto) {
+        storyRepository.findByTitle(dto.getTitle()).ifPresent(title -> {
+            throw new DataDuplicationException("Creator with title: \"" + title + "\" already exists");
+        });
+
         Story story = new Story();
+        story.setCreated(LocalDateTime.now());
         requestDtoToStory(story, dto);
         storyRepository.save(story);
         return storyToResponseDto(story);
@@ -52,8 +58,12 @@ public class StoryServiceImpl implements StoryService {
     }
 
     @Override
-    public StoryResponseTo update(StoryRequestTo dto, Long id) {
-        Story story = findStoryById(id);
+    public StoryResponseTo update(StoryRequestTo dto) {
+        storyRepository.findByTitle(dto.getTitle()).ifPresent(title -> {
+            throw new DataDuplicationException("Creator with title: \"" + title + "\" already exists");
+        });
+
+        Story story = findStoryById(dto.getId());
         requestDtoToStory(story, dto);
         storyRepository.save(story);
         return storyToResponseDto(story);
@@ -67,9 +77,8 @@ public class StoryServiceImpl implements StoryService {
 
     void requestDtoToStory(Story story, StoryRequestTo dto) {
         story.setTitle(dto.getTitle());
+        story.setModified(LocalDateTime.now());
         story.setContent(dto.getContent());
-        story.setCreated(LocalDateTime.parse(dto.getCreated()));
-        story.setModified(LocalDateTime.parse(dto.getModified()));
         story.setCreator(creatorService.findCreatorById(dto.getCreatorId()));
     }
 
@@ -77,7 +86,7 @@ public class StoryServiceImpl implements StoryService {
         StoryResponseTo dto = new StoryResponseTo();
         dto.setId(story.getId());
         dto.setTitle(story.getTitle());
-        dto.setContext(story.getContent());
+        dto.setContent(story.getContent());
         dto.setCreated(story.getCreated().toString());
         dto.setModified(story.getModified().toString());
         dto.setCreatorId(story.getCreator().getId());

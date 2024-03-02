@@ -9,4 +9,5 @@ public class MarkerResponseTo {
 
     private String name;
 
+    private Long storyId;
 }

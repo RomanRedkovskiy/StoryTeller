@@ -15,7 +15,7 @@ public class Creator {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 64)
+    @Column(nullable = false, length = 64)
     private String login;
 
     @Column(length = 128)

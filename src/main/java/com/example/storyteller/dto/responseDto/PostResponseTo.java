@@ -8,7 +8,7 @@ public class PostResponseTo {
 
     private Long id;
 
-    private String context;
+    private String content;
 
     private Long storyId;
 

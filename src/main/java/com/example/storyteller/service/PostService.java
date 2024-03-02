@@ -11,7 +11,7 @@ public interface PostService {
 
     PostResponseTo findDtoById(Long id);
 
-    PostResponseTo update(PostRequestTo dto, Long id);
+    PostResponseTo update(PostRequestTo dto);
 
     void delete(Long id);
     

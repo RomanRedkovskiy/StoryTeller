@@ -14,7 +14,7 @@ public interface CreatorService {
 
     Creator findCreatorById(Long id);
 
-    CreatorResponseTo update(CreatorRequestTo dto, Long id);
+    CreatorResponseTo update(CreatorRequestTo dto);
 
     void delete(Long id);
 }

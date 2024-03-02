@@ -4,12 +4,13 @@ import com.example.storyteller.dto.requestDto.CreatorRequestTo;
 import com.example.storyteller.dto.responseDto.CreatorResponseTo;
 import com.example.storyteller.repository.CreatorRepository;
 import com.example.storyteller.service.CreatorService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1.0/creator")
+@RequestMapping("/api/v1.0/creators")
 public class CreatorController {
 
     private final CreatorService creatorService;
@@ -31,18 +32,17 @@ public class CreatorController {
         return creatorService.findDtoById(id);
     }
 
-    //@PreAuthorize("@securityService.hasRole(#header)")
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public CreatorResponseTo addTask(@RequestBody CreatorRequestTo taskDto) {
+    public CreatorResponseTo addTask(@Valid @RequestBody CreatorRequestTo taskDto) {
         return creatorService.create(taskDto);
     }
 
     //@PreAuthorize("@securityService.hasRole(#header)")
-    @PutMapping("/{id}")
+    @PutMapping("")
     @ResponseStatus(HttpStatus.OK)
-    public CreatorResponseTo updateTask(@RequestBody final CreatorRequestTo taskDto, @PathVariable final Long id) {
-        return creatorService.update(taskDto, id);
+    public CreatorResponseTo updateTask(@Valid @RequestBody final CreatorRequestTo taskDto) {
+        return creatorService.update(taskDto);
     }
 
     //@PreAuthorize("@securityService.hasRole(#header)")

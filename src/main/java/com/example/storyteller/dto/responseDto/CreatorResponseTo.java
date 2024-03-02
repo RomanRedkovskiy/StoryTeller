@@ -11,7 +11,7 @@ public class CreatorResponseTo {
 
     private String password;
 
-    private String firstName;
+    private String firstname;
 
-    private String lastName;
+    private String lastname;
 }
