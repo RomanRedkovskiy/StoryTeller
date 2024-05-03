@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>StoryTeller</artifactId>
+    <artifactId>publisher-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>StoryTeller</name>
-    <description>StoryTeller</description>
+    <name>publisher-service</name>
+    <description>publisher-service</description>
     <properties>
         <java.version>21</java.version>
     </properties>
@@ -24,10 +24,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.liquibase</groupId>
-            <artifactId>liquibase-core</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.validation</groupId>
@@ -48,6 +44,21 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+            <version>3.1.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>3.1.5</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
